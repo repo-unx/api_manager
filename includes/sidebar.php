@@ -36,6 +36,12 @@
                         <span>API Request Logs</span>
                     </a>
                 </li>
+                <li>
+                    <a href="/docs/index.php" class="flex items-center px-4 py-3 text-gray-700 rounded-lg hover:bg-gray-100 <?= $currentPage === 'docs' ? 'bg-indigo-50 font-medium text-indigo-700 border-l-4 border-indigo-500' : '' ?>">
+                        <i class="fas fa-book w-5 h-5 mr-3 <?= $currentPage === 'docs' ? 'text-indigo-600' : 'text-gray-500' ?>"></i>
+                        <span>Documentation</span>
+                    </a>
+                </li>
             </ul>
         </nav>
         
