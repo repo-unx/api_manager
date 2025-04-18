@@ -47,6 +47,9 @@ require_once __DIR__ . '/../includes/sidebar.php';
             <a href="#logs" class="px-4 py-2 hover:bg-gray-100 rounded-md mr-2 whitespace-nowrap">
                 API Logs
             </a>
+            <a href="/docs/db_requests.php" class="px-4 py-2 hover:bg-gray-100 rounded-md mr-2 whitespace-nowrap flex items-center">
+                <i class="fas fa-database mr-1 text-indigo-500"></i> DB Examples
+            </a>
         </nav>
     </div>
     

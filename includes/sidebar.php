@@ -74,5 +74,5 @@
 </aside>
 
 <!-- Main content -->
-<main class="flex-1 md:ml-64 p-4 min-h-screen pt-20" id="main-content">
-    <div class="container mx-auto">
+<main class="flex-1 md:ml-64 p-5 lg:p-6 min-h-screen pt-20" id="main-content">
+    <div class="container mx-auto max-w-screen-xl">
