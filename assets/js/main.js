@@ -12,8 +12,46 @@ document.addEventListener('DOMContentLoaded', function() {
     const sidebarOverlay = document.getElementById('sidebar-overlay');
     const mainContent = document.getElementById('main-content');
     
-    // Sidebar state
-    let sidebarCollapsed = false;
+    // Sidebar state - check localStorage first
+    let sidebarCollapsed = localStorage.getItem('sidebarCollapsed') === 'true';
+    
+    // Initialize sidebar state
+    if (sidebarCollapsed && window.innerWidth >= 768) {
+        // Set collapsed state on page load
+        sidebar.classList.add('md:w-16');
+        sidebar.classList.remove('md:w-64');
+        mainContent.classList.remove('md:ml-64');
+        mainContent.classList.add('md:ml-16');
+        
+        // Toggle visibility of text and collapse button
+        const sidebarTexts = sidebar.querySelectorAll('.sidebar-text');
+        sidebarTexts.forEach(text => text.classList.add('hidden'));
+        
+        // Show only icons
+        const sidebarIcons = sidebar.querySelectorAll('.sidebar-icon');
+        sidebarIcons.forEach(icon => icon.classList.remove('mr-3'));
+        
+        // Change collapse button
+        const collapseButton = document.getElementById('desktop-sidebar-collapse');
+        if (collapseButton) {
+            collapseButton.innerHTML = '<i class="fas fa-chevron-right"></i>';
+            collapseButton.setAttribute('title', 'Expand Sidebar');
+        }
+        
+        // Add mini icon tooltips
+        const menuItems = sidebar.querySelectorAll('li a');
+        menuItems.forEach(item => {
+            const text = item.querySelector('.sidebar-text');
+            if (text) {
+                item.setAttribute('title', text.textContent.trim());
+            }
+            item.classList.add('justify-center');
+        });
+        
+        // Hide menu headers
+        const menuHeaders = sidebar.querySelectorAll('.menu-header');
+        menuHeaders.forEach(header => header.classList.add('hidden'));
+    }
     
     // Mobile sidebar toggle
     if (mobileMenuButton && sidebar && sidebarBackdrop) {
@@ -50,14 +88,77 @@ document.addEventListener('DOMContentLoaded', function() {
             sidebarCollapsed = !sidebarCollapsed;
             
             if (sidebarCollapsed) {
-                sidebar.classList.add('-translate-x-full');
+                // Collapse sidebar
+                sidebar.classList.add('md:w-16');
+                sidebar.classList.remove('md:w-64');
                 mainContent.classList.remove('md:ml-64');
-                sidebarOverlay.classList.add('hidden');
+                mainContent.classList.add('md:ml-16');
+                
+                // Toggle visibility of text and collapse button
+                const sidebarTexts = sidebar.querySelectorAll('.sidebar-text');
+                sidebarTexts.forEach(text => text.classList.add('hidden'));
+                
+                // Show only icons
+                const sidebarIcons = sidebar.querySelectorAll('.sidebar-icon');
+                sidebarIcons.forEach(icon => icon.classList.remove('mr-3'));
+                
+                // Change collapse button
+                const collapseButton = document.getElementById('desktop-sidebar-collapse');
+                if (collapseButton) {
+                    collapseButton.innerHTML = '<i class="fas fa-chevron-right"></i>';
+                    collapseButton.setAttribute('title', 'Expand Sidebar');
+                }
+                
+                // Add mini icon tooltips
+                const menuItems = sidebar.querySelectorAll('li a');
+                menuItems.forEach(item => {
+                    const text = item.querySelector('.sidebar-text');
+                    if (text) {
+                        item.setAttribute('title', text.textContent.trim());
+                    }
+                    item.classList.add('justify-center');
+                });
+                
+                // Hide menu headers
+                const menuHeaders = sidebar.querySelectorAll('.menu-header');
+                menuHeaders.forEach(header => header.classList.add('hidden'));
+                
             } else {
-                sidebar.classList.remove('-translate-x-full');
+                // Expand sidebar
+                sidebar.classList.remove('md:w-16');
+                sidebar.classList.add('md:w-64');
                 mainContent.classList.add('md:ml-64');
-                sidebarOverlay.classList.add('hidden');
+                mainContent.classList.remove('md:ml-16');
+                
+                // Show text and collapse button
+                const sidebarTexts = sidebar.querySelectorAll('.sidebar-text');
+                sidebarTexts.forEach(text => text.classList.remove('hidden'));
+                
+                // Restore icons margin
+                const sidebarIcons = sidebar.querySelectorAll('.sidebar-icon');
+                sidebarIcons.forEach(icon => icon.classList.add('mr-3'));
+                
+                // Restore collapse button
+                const collapseButton = document.getElementById('desktop-sidebar-collapse');
+                if (collapseButton) {
+                    collapseButton.innerHTML = '<i class="fas fa-chevron-left mr-2"></i><span>Collapse</span>';
+                    collapseButton.removeAttribute('title');
+                }
+                
+                // Remove mini tooltips
+                const menuItems = sidebar.querySelectorAll('li a');
+                menuItems.forEach(item => {
+                    item.removeAttribute('title');
+                    item.classList.remove('justify-center');
+                });
+                
+                // Show menu headers
+                const menuHeaders = sidebar.querySelectorAll('.menu-header');
+                menuHeaders.forEach(header => header.classList.remove('hidden'));
             }
+            
+            // Store sidebar state in localStorage
+            localStorage.setItem('sidebarCollapsed', sidebarCollapsed);
         }
     }
     

@@ -88,16 +88,32 @@
         <div class="container mx-auto px-4 py-3 flex justify-between items-center">
             <div class="flex items-center">
                 <!-- Desktop sidebar toggle button -->
-                <button id="desktop-sidebar-toggle" class="text-white mr-4 hidden md:block">
-                    <i class="fas fa-bars text-xl"></i>
+                <button id="desktop-sidebar-toggle" class="text-white mr-4 hidden md:flex items-center justify-center w-8 h-8 rounded-full hover:bg-indigo-800 transition-colors focus:outline-none focus:ring-2 focus:ring-indigo-300" aria-label="Toggle Sidebar">
+                    <i class="fas fa-bars text-lg"></i>
                 </button>
-                <h1 class="text-xl font-bold"><?= APP_NAME ?></h1>
+                <h1 class="text-xl font-bold flex items-center">
+                    <i class="fas fa-cube mr-2"></i>
+                    <?= APP_NAME ?>
+                </h1>
             </div>
             
-            <!-- Mobile menu button -->
-            <button id="mobile-menu-button" class="md:hidden text-white">
-                <i class="fas fa-bars text-xl"></i>
-            </button>
+            <div class="flex items-center">
+                <!-- Theme toggle button (future implementation) -->
+                <button class="text-white mx-3 hover:text-indigo-200 transition-colors hidden md:block" title="Coming Soon: Dark Theme">
+                    <i class="fas fa-moon"></i>
+                </button>
+                
+                <!-- Notifications (future implementation) -->
+                <button class="text-white mx-3 hover:text-indigo-200 transition-colors hidden md:block relative" title="Coming Soon: Notifications">
+                    <i class="fas fa-bell"></i>
+                    <span class="absolute top-0 right-0 block h-2 w-2 rounded-full bg-red-500"></span>
+                </button>
+                
+                <!-- Mobile menu button -->
+                <button id="mobile-menu-button" class="md:hidden text-white p-1 rounded-md hover:bg-indigo-800">
+                    <i class="fas fa-bars text-xl"></i>
+                </button>
+            </div>
         </div>
     </header>
     
