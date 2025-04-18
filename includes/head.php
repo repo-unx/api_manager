@@ -84,35 +84,91 @@
     </style>
 </head>
 <body class="bg-gray-100 min-h-screen flex flex-col">
-    <header class="bg-primary text-white shadow-md fixed top-0 left-0 right-0 z-30">
-        <div class="container mx-auto px-4 py-3 flex justify-between items-center">
-            <div class="flex items-center">
-                <!-- Desktop sidebar toggle button -->
-                <button id="desktop-sidebar-toggle" class="text-white mr-4 hidden md:flex items-center justify-center w-8 h-8 rounded-full hover:bg-indigo-800 transition-colors focus:outline-none focus:ring-2 focus:ring-indigo-300" aria-label="Toggle Sidebar">
-                    <i class="fas fa-bars text-lg"></i>
-                </button>
-                <h1 class="text-xl font-bold flex items-center">
-                    <i class="fas fa-cube mr-2"></i>
-                    <?= APP_NAME ?>
-                </h1>
+    <header class="bg-gradient-to-r from-indigo-900 via-primary to-indigo-800 text-white shadow-md fixed top-0 left-0 right-0 z-30">
+        <div class="container mx-auto px-4 py-3">
+            <!-- Main Header Content -->
+            <div class="flex justify-between items-center">
+                <div class="flex items-center">
+                    <!-- Desktop sidebar toggle button -->
+                    <button id="desktop-sidebar-toggle" class="text-white mr-4 hidden md:flex items-center justify-center w-9 h-9 rounded-lg bg-indigo-800/40 hover:bg-indigo-700 transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-indigo-300" aria-label="Toggle Sidebar">
+                        <i class="fas fa-bars text-lg"></i>
+                    </button>
+                    
+                    <!-- App Logo and Name -->
+                    <div class="flex items-center">
+                        <span class="bg-white text-indigo-800 w-8 h-8 rounded flex items-center justify-center mr-3 shadow-lg">
+                            <i class="fas fa-cube text-lg"></i>
+                        </span>
+                        <h1 class="text-xl font-bold tracking-tight">
+                            <?= APP_NAME ?>
+                        </h1>
+                    </div>
+                </div>
+                
+                <!-- Right Menu -->
+                <div class="flex items-center space-x-1">
+                    <!-- New Features Menu -->
+                    <div class="hidden md:block relative group">
+                        <button class="flex items-center bg-indigo-800/30 hover:bg-indigo-800/50 rounded-lg px-3 py-2 text-sm transition-all duration-300">
+                            <span class="mr-1">New Features</span>
+                            <i class="fas fa-chevron-down text-xs opacity-70"></i>
+                        </button>
+                        <div class="absolute right-0 top-full mt-1 w-64 bg-white rounded-lg shadow-lg overflow-hidden transform origin-top scale-0 group-hover:scale-100 transition-transform z-50">
+                            <div class="p-2 border-b border-gray-100 flex items-center bg-indigo-50">
+                                <span class="px-2 py-1 rounded-md bg-indigo-100 text-indigo-800 text-xs font-semibold">NEW FEATURES</span>
+                            </div>
+                            <div class="py-2">
+                                <a href="/export_import.php" class="flex items-center px-4 py-2 text-gray-800 hover:bg-indigo-50 transition-colors">
+                                    <i class="fas fa-file-export w-5 text-indigo-500"></i>
+                                    <span class="ml-2 text-sm">Export/Import Configurations</span>
+                                </a>
+                                <a href="/endpoint_playground.php" class="flex items-center px-4 py-2 text-gray-800 hover:bg-indigo-50 transition-colors">
+                                    <i class="fas fa-vial w-5 text-indigo-500"></i>
+                                    <span class="ml-2 text-sm">API Testing Playground</span>
+                                </a>
+                                <a href="/visualizations.php" class="flex items-center px-4 py-2 text-gray-800 hover:bg-indigo-50 transition-colors">
+                                    <i class="fas fa-chart-bar w-5 text-indigo-500"></i>
+                                    <span class="ml-2 text-sm">Usage Statistics</span>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Theme toggle button -->
+                    <button class="text-white p-2 rounded-lg hover:bg-indigo-800/50 transition-all duration-300 hidden md:flex items-center justify-center" title="Toggle Theme (Coming Soon)">
+                        <i class="fas fa-moon"></i>
+                    </button>
+                    
+                    <!-- Help button -->
+                    <a href="/docs/index.php" class="text-white p-2 rounded-lg hover:bg-indigo-800/50 transition-all duration-300 hidden md:flex items-center justify-center" title="Documentation">
+                        <i class="fas fa-question-circle"></i>
+                    </a>
+                    
+                    <!-- Mobile menu button -->
+                    <button id="mobile-menu-button" class="md:hidden text-white p-2 rounded-lg hover:bg-indigo-800/50 transition-all duration-300">
+                        <i class="fas fa-bars text-lg"></i>
+                    </button>
+                </div>
             </div>
             
-            <div class="flex items-center">
-                <!-- Theme toggle button (future implementation) -->
-                <button class="text-white mx-3 hover:text-indigo-200 transition-colors hidden md:block" title="Coming Soon: Dark Theme">
-                    <i class="fas fa-moon"></i>
-                </button>
+            <!-- Sub Header / Search Bar - only visible on larger screens -->
+            <div class="hidden md:flex mt-2 mb-0 pb-0">
+                <div class="relative w-full max-w-lg">
+                    <div class="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none text-white/50">
+                        <i class="fas fa-search"></i>
+                    </div>
+                    <input type="text" class="w-full bg-white/10 border border-indigo-800/30 rounded-lg py-1.5 pl-10 pr-4 placeholder-white/60 text-white focus:outline-none focus:ring-2 focus:ring-indigo-300 text-sm" placeholder="Search API endpoints, templates, or logs...">
+                </div>
                 
-                <!-- Notifications (future implementation) -->
-                <button class="text-white mx-3 hover:text-indigo-200 transition-colors hidden md:block relative" title="Coming Soon: Notifications">
-                    <i class="fas fa-bell"></i>
-                    <span class="absolute top-0 right-0 block h-2 w-2 rounded-full bg-red-500"></span>
-                </button>
-                
-                <!-- Mobile menu button -->
-                <button id="mobile-menu-button" class="md:hidden text-white p-1 rounded-md hover:bg-indigo-800">
-                    <i class="fas fa-bars text-xl"></i>
-                </button>
+                <!-- Quick Action Buttons -->
+                <div class="flex ml-4 space-x-2">
+                    <a href="/aggregators_form.php" class="bg-indigo-700 hover:bg-indigo-600 py-1.5 px-3 text-sm rounded-lg flex items-center transition-colors duration-300">
+                        <i class="fas fa-plus text-xs mr-1.5"></i> New Aggregator
+                    </a>
+                    <a href="/endpoints_form.php" class="bg-indigo-700 hover:bg-indigo-600 py-1.5 px-3 text-sm rounded-lg flex items-center transition-colors duration-300">
+                        <i class="fas fa-plus text-xs mr-1.5"></i> New Endpoint
+                    </a>
+                </div>
             </div>
         </div>
     </header>

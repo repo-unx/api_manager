@@ -37,6 +37,24 @@
                     </a>
                 </li>
                 <li>
+                    <a href="/endpoint_playground.php" class="flex items-center px-4 py-3 text-gray-700 rounded-lg hover:bg-gray-100 <?= $currentPage === 'playground' ? 'bg-indigo-50 font-medium text-indigo-700 border-l-4 border-indigo-500' : '' ?>">
+                        <i class="fas fa-flask w-5 h-5 mr-3 sidebar-icon <?= $currentPage === 'playground' ? 'text-indigo-600' : 'text-gray-500' ?>"></i>
+                        <span class="sidebar-text">API Playground</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="/export_import.php" class="flex items-center px-4 py-3 text-gray-700 rounded-lg hover:bg-gray-100 <?= $currentPage === 'export_import' ? 'bg-indigo-50 font-medium text-indigo-700 border-l-4 border-indigo-500' : '' ?>">
+                        <i class="fas fa-exchange-alt w-5 h-5 mr-3 sidebar-icon <?= $currentPage === 'export_import' ? 'text-indigo-600' : 'text-gray-500' ?>"></i>
+                        <span class="sidebar-text">Export/Import</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="/visualizations.php" class="flex items-center px-4 py-3 text-gray-700 rounded-lg hover:bg-gray-100 <?= $currentPage === 'visualizations' ? 'bg-indigo-50 font-medium text-indigo-700 border-l-4 border-indigo-500' : '' ?>">
+                        <i class="fas fa-chart-bar w-5 h-5 mr-3 sidebar-icon <?= $currentPage === 'visualizations' ? 'text-indigo-600' : 'text-gray-500' ?>"></i>
+                        <span class="sidebar-text">Statistics</span>
+                    </a>
+                </li>
+                <li>
                     <a href="/docs/index.php" class="flex items-center px-4 py-3 text-gray-700 rounded-lg hover:bg-gray-100 <?= $currentPage === 'docs' ? 'bg-indigo-50 font-medium text-indigo-700 border-l-4 border-indigo-500' : '' ?>">
                         <i class="fas fa-book w-5 h-5 mr-3 sidebar-icon <?= $currentPage === 'docs' ? 'text-indigo-600' : 'text-gray-500' ?>"></i>
                         <span class="sidebar-text">Documentation</span>
