@@ -89,8 +89,8 @@
             <!-- Main Header Content -->
             <div class="flex justify-between items-center">
                 <div class="flex items-center">
-                    <!-- Desktop sidebar toggle button -->
-                    <button id="desktop-sidebar-toggle" class="text-white mr-4 hidden md:flex items-center justify-center w-9 h-9 rounded-lg bg-indigo-800/40 hover:bg-indigo-700 transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-indigo-300" aria-label="Toggle Sidebar">
+                    <!-- Mobile sidebar toggle button -->
+                    <button id="desktop-sidebar-toggle" class="text-white mr-4 md:hidden flex items-center justify-center w-9 h-9 rounded-lg bg-indigo-800/40 hover:bg-indigo-700 transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-indigo-300" aria-label="Toggle Sidebar">
                         <i class="fas fa-bars text-lg"></i>
                     </button>
                     
@@ -151,23 +151,71 @@
                 </div>
             </div>
             
-            <!-- Sub Header / Search Bar - only visible on larger screens -->
-            <div class="hidden md:flex mt-2 mb-0 pb-0">
-                <div class="relative w-full max-w-lg">
-                    <div class="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none text-white/50">
-                        <i class="fas fa-search"></i>
+            <!-- Desktop Navigation and Search Bar -->
+            <div class="hidden md:block mt-2 pb-0">
+                <!-- Main Navigation Menu -->
+                <div class="flex items-center justify-between mb-2">
+                    <nav class="flex space-x-1">
+                        <a href="/" class="px-3 py-2 text-sm font-medium rounded-lg <?= $currentPage === 'dashboard' ? 'bg-indigo-700 text-white' : 'text-white/90 hover:bg-indigo-700/40' ?> transition-colors">
+                            <i class="fas fa-tachometer-alt mr-1.5"></i> Dashboard
+                        </a>
+                        <a href="/aggregators.php" class="px-3 py-2 text-sm font-medium rounded-lg <?= $currentPage === 'aggregators' ? 'bg-indigo-700 text-white' : 'text-white/90 hover:bg-indigo-700/40' ?> transition-colors">
+                            <i class="fas fa-server mr-1.5"></i> Aggregators
+                        </a>
+                        <a href="/endpoints.php" class="px-3 py-2 text-sm font-medium rounded-lg <?= $currentPage === 'endpoints' ? 'bg-indigo-700 text-white' : 'text-white/90 hover:bg-indigo-700/40' ?> transition-colors">
+                            <i class="fas fa-link mr-1.5"></i> Endpoints
+                        </a>
+                        <a href="/templates.php" class="px-3 py-2 text-sm font-medium rounded-lg <?= $currentPage === 'templates' ? 'bg-indigo-700 text-white' : 'text-white/90 hover:bg-indigo-700/40' ?> transition-colors">
+                            <i class="fas fa-file-code mr-1.5"></i> Templates
+                        </a>
+                        <a href="/logs.php" class="px-3 py-2 text-sm font-medium rounded-lg <?= $currentPage === 'logs' ? 'bg-indigo-700 text-white' : 'text-white/90 hover:bg-indigo-700/40' ?> transition-colors">
+                            <i class="fas fa-history mr-1.5"></i> Logs
+                        </a>
+                        
+                        <!-- Tools Dropdown -->
+                        <div class="relative group">
+                            <button class="px-3 py-2 text-sm font-medium rounded-lg text-white/90 hover:bg-indigo-700/40 transition-colors group-hover:bg-indigo-700/40">
+                                <i class="fas fa-tools mr-1.5"></i> Tools <i class="fas fa-chevron-down text-xs ml-1"></i>
+                            </button>
+                            <div class="absolute left-0 top-full mt-1 w-48 bg-white rounded-lg shadow-lg overflow-hidden transform origin-top scale-0 group-hover:scale-100 transition-transform z-50">
+                                <div class="py-1">
+                                    <a href="/endpoint_playground.php" class="flex items-center px-4 py-2 text-gray-800 hover:bg-indigo-50 transition-colors <?= $currentPage === 'playground' ? 'bg-indigo-50 text-indigo-700 font-medium' : '' ?>">
+                                        <i class="fas fa-flask w-5 text-indigo-500 mr-2"></i> API Playground
+                                    </a>
+                                    <a href="/export_import.php" class="flex items-center px-4 py-2 text-gray-800 hover:bg-indigo-50 transition-colors <?= $currentPage === 'export_import' ? 'bg-indigo-50 text-indigo-700 font-medium' : '' ?>">
+                                        <i class="fas fa-exchange-alt w-5 text-indigo-500 mr-2"></i> Export/Import
+                                    </a>
+                                    <a href="/visualizations.php" class="flex items-center px-4 py-2 text-gray-800 hover:bg-indigo-50 transition-colors <?= $currentPage === 'visualizations' ? 'bg-indigo-50 text-indigo-700 font-medium' : '' ?>">
+                                        <i class="fas fa-chart-bar w-5 text-indigo-500 mr-2"></i> Statistics
+                                    </a>
+                                    <div class="border-t border-gray-100 my-1"></div>
+                                    <a href="/docs/index.php" class="flex items-center px-4 py-2 text-gray-800 hover:bg-indigo-50 transition-colors <?= $currentPage === 'docs' ? 'bg-indigo-50 text-indigo-700 font-medium' : '' ?>">
+                                        <i class="fas fa-book w-5 text-indigo-500 mr-2"></i> Documentation
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </nav>
+                    
+                    <!-- Quick Action Buttons -->
+                    <div class="flex space-x-2">
+                        <a href="/aggregators_form.php" class="bg-indigo-700 hover:bg-indigo-600 py-1.5 px-3 text-sm rounded-lg flex items-center transition-colors duration-300">
+                            <i class="fas fa-plus text-xs mr-1.5"></i> New Aggregator
+                        </a>
+                        <a href="/endpoints_form.php" class="bg-indigo-700 hover:bg-indigo-600 py-1.5 px-3 text-sm rounded-lg flex items-center transition-colors duration-300">
+                            <i class="fas fa-plus text-xs mr-1.5"></i> New Endpoint
+                        </a>
                     </div>
-                    <input type="text" class="w-full bg-white/10 border border-indigo-800/30 rounded-lg py-1.5 pl-10 pr-4 placeholder-white/60 text-white focus:outline-none focus:ring-2 focus:ring-indigo-300 text-sm" placeholder="Search API endpoints, templates, or logs...">
                 </div>
                 
-                <!-- Quick Action Buttons -->
-                <div class="flex ml-4 space-x-2">
-                    <a href="/aggregators_form.php" class="bg-indigo-700 hover:bg-indigo-600 py-1.5 px-3 text-sm rounded-lg flex items-center transition-colors duration-300">
-                        <i class="fas fa-plus text-xs mr-1.5"></i> New Aggregator
-                    </a>
-                    <a href="/endpoints_form.php" class="bg-indigo-700 hover:bg-indigo-600 py-1.5 px-3 text-sm rounded-lg flex items-center transition-colors duration-300">
-                        <i class="fas fa-plus text-xs mr-1.5"></i> New Endpoint
-                    </a>
+                <!-- Search Bar -->
+                <div class="flex">
+                    <div class="relative w-full max-w-lg">
+                        <div class="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none text-white/50">
+                            <i class="fas fa-search"></i>
+                        </div>
+                        <input type="text" class="w-full bg-white/10 border border-indigo-800/30 rounded-lg py-1.5 pl-10 pr-4 placeholder-white/60 text-white focus:outline-none focus:ring-2 focus:ring-indigo-300 text-sm" placeholder="Search API endpoints, templates, or logs...">
+                    </div>
                 </div>
             </div>
         </div>

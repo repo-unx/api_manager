@@ -1,5 +1,5 @@
-<!-- Sidebar -->
-<aside id="sidebar" class="bg-white shadow-lg md:w-64 fixed inset-y-0 left-0 transform -translate-x-full md:translate-x-0 transition-all duration-300 ease-in-out z-30 md:z-10 pt-16 pb-4">
+<!-- Sidebar - now only visible on mobile -->
+<aside id="sidebar" class="bg-white shadow-lg w-72 fixed inset-y-0 left-0 transform -translate-x-full md:hidden transition-all duration-300 ease-in-out z-30 pt-16 pb-4">
     <div class="h-full overflow-y-auto flex flex-col justify-between">
         <nav class="px-4 py-4">
             <div class="mb-4 px-2 menu-header">
@@ -74,5 +74,5 @@
 </aside>
 
 <!-- Main content -->
-<main class="flex-1 md:ml-64 p-5 lg:p-6 min-h-screen pt-20" id="main-content">
+<main class="flex-1 p-5 lg:p-6 min-h-screen pt-20" id="main-content">
     <div class="container mx-auto max-w-screen-xl">
