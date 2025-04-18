@@ -84,9 +84,13 @@
     </style>
 </head>
 <body class="bg-gray-100 min-h-screen flex flex-col">
-    <header class="bg-primary text-white shadow-md">
+    <header class="bg-primary text-white shadow-md fixed top-0 left-0 right-0 z-30">
         <div class="container mx-auto px-4 py-3 flex justify-between items-center">
             <div class="flex items-center">
+                <!-- Desktop sidebar toggle button -->
+                <button id="desktop-sidebar-toggle" class="text-white mr-4 hidden md:block">
+                    <i class="fas fa-bars text-xl"></i>
+                </button>
                 <h1 class="text-xl font-bold"><?= APP_NAME ?></h1>
             </div>
             
