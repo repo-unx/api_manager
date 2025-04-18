@@ -43,6 +43,37 @@ require_once __DIR__ . '/includes/sidebar.php';
 
 <?php displayMessage(); ?>
 
+<!-- Documentation/Tutorial -->
+<div class="bg-blue-50 border border-blue-200 rounded-lg p-4 mb-6">
+    <div class="flex items-start">
+        <div class="flex-shrink-0 mt-0.5">
+            <i class="fas fa-info-circle text-blue-500 text-xl"></i>
+        </div>
+        <div class="ml-3">
+            <h3 class="text-sm font-medium text-blue-800">Dokumentasi Penggunaan Dashboard</h3>
+            <div class="mt-2 text-sm text-blue-700">
+                <p class="mb-2">Dashboard menampilkan gambaran umum API Manager Anda, termasuk:</p>
+                <ul class="list-disc list-inside space-y-1 mb-2">
+                    <li>Jumlah API Aggregator, Endpoint, Template, dan Log</li>
+                    <li>Endpoint API terbaru yang telah dibuat</li>
+                    <li>Log request API terbaru</li>
+                </ul>
+                <p>Untuk mulai menggunakan sistem:</p>
+                <ol class="list-decimal list-inside space-y-1">
+                    <li>Buat API Aggregator baru (penyedia API)</li>
+                    <li>Tambahkan Endpoint API untuk setiap layanan</li>
+                    <li>Buat Template untuk request yang sering digunakan</li>
+                    <li>Pantau aktivitas API melalui Log Request</li>
+                </ol>
+                <p class="mt-2 text-blue-600 cursor-pointer" onclick="this.parentElement.classList.toggle('!h-auto'); this.textContent = this.textContent === 'Lihat lebih banyak...' ? 'Sembunyikan' : 'Lihat lebih banyak...'">Lihat lebih banyak...</p>
+            </div>
+        </div>
+        <button class="ml-auto flex-shrink-0 text-blue-500 hover:text-blue-700" onclick="this.closest('.bg-blue-50').classList.add('hidden')">
+            <i class="fas fa-times"></i>
+        </button>
+    </div>
+</div>
+
 <!-- Stats Cards -->
 <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-6">
     <div class="bg-white rounded-lg shadow-md p-6">

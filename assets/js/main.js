@@ -5,9 +5,17 @@
 document.addEventListener('DOMContentLoaded', function() {
     // Mobile menu toggle
     const mobileMenuButton = document.getElementById('mobile-menu-button');
+    const desktopToggleButton = document.getElementById('desktop-sidebar-toggle');
+    const desktopCollapseButton = document.getElementById('desktop-sidebar-collapse');
     const sidebar = document.getElementById('sidebar');
     const sidebarBackdrop = document.getElementById('sidebar-backdrop');
+    const sidebarOverlay = document.getElementById('sidebar-overlay');
+    const mainContent = document.getElementById('main-content');
     
+    // Sidebar state
+    let sidebarCollapsed = false;
+    
+    // Mobile sidebar toggle
     if (mobileMenuButton && sidebar && sidebarBackdrop) {
         mobileMenuButton.addEventListener('click', function() {
             sidebar.classList.toggle('-translate-x-full');
@@ -19,6 +27,46 @@ document.addEventListener('DOMContentLoaded', function() {
             sidebar.classList.add('-translate-x-full');
             sidebarBackdrop.classList.add('hidden');
             document.body.classList.remove('overflow-hidden');
+        });
+    }
+    
+    // Desktop sidebar toggle
+    if (desktopToggleButton && sidebar) {
+        desktopToggleButton.addEventListener('click', function() {
+            toggleSidebar();
+        });
+    }
+    
+    // Desktop sidebar collapse button
+    if (desktopCollapseButton && sidebar) {
+        desktopCollapseButton.addEventListener('click', function() {
+            toggleSidebar();
+        });
+    }
+    
+    // Function to toggle sidebar on desktop
+    function toggleSidebar() {
+        if (window.innerWidth >= 768) { // md breakpoint
+            sidebarCollapsed = !sidebarCollapsed;
+            
+            if (sidebarCollapsed) {
+                sidebar.classList.add('-translate-x-full');
+                mainContent.classList.remove('md:ml-64');
+                sidebarOverlay.classList.add('hidden');
+            } else {
+                sidebar.classList.remove('-translate-x-full');
+                mainContent.classList.add('md:ml-64');
+                sidebarOverlay.classList.add('hidden');
+            }
+        }
+    }
+    
+    // Close sidebar when clicking overlay
+    if (sidebarOverlay) {
+        sidebarOverlay.addEventListener('click', function() {
+            if (!sidebarCollapsed) {
+                toggleSidebar();
+            }
         });
     }
     

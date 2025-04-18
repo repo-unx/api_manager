@@ -107,6 +107,39 @@ require_once __DIR__ . '/includes/sidebar.php';
 
 <?php displayMessage(); ?>
 
+<!-- Documentation/Tutorial -->
+<div class="bg-blue-50 border border-blue-200 rounded-lg p-4 mb-6">
+    <div class="flex items-start">
+        <div class="flex-shrink-0 mt-0.5">
+            <i class="fas fa-info-circle text-blue-500 text-xl"></i>
+        </div>
+        <div class="ml-3">
+            <h3 class="text-sm font-medium text-blue-800">Penggunaan API Aggregators</h3>
+            <div class="mt-2 text-sm text-blue-700">
+                <p class="mb-2">API Aggregator adalah penyedia layanan API yang mengelola berbagai layanan API dan endpoint di bawahnya. Pada halaman ini Anda dapat:</p>
+                <ul class="list-disc list-inside space-y-1 mb-2">
+                    <li>Melihat daftar semua API Aggregator yang telah terdaftar</li>
+                    <li>Menambahkan API Aggregator baru dengan mengklik tombol "Add New"</li>
+                    <li>Mengaktifkan atau menonaktifkan Aggregator dengan tombol toggle status</li>
+                    <li>Mengedit atau menghapus Aggregator yang ada</li>
+                </ul>
+                <p class="font-medium">Langkah-langkah penambahan API Aggregator:</p>
+                <ol class="list-decimal list-inside space-y-1">
+                    <li>Klik tombol "Add New" di kanan atas</li>
+                    <li>Isi nama Aggregator (misal: "Payment Gateway")</li>
+                    <li>Masukkan URL base API (misal: "https://api.payment.com/")</li>
+                    <li>Masukkan kode agen dan token autentikasi yang diberikan oleh penyedia API</li>
+                    <li>Klik "Save" untuk menyimpan</li>
+                </ol>
+                <p class="mt-2 text-blue-600 cursor-pointer" onclick="this.parentElement.classList.toggle('!h-auto'); this.textContent = this.textContent === 'Lihat lebih banyak...' ? 'Sembunyikan' : 'Lihat lebih banyak...'">Lihat lebih banyak...</p>
+            </div>
+        </div>
+        <button class="ml-auto flex-shrink-0 text-blue-500 hover:text-blue-700" onclick="this.closest('.bg-blue-50').classList.add('hidden')">
+            <i class="fas fa-times"></i>
+        </button>
+    </div>
+</div>
+
 <!-- Search and Filter -->
 <div class="bg-white rounded-lg shadow-md p-4 mb-6">
     <form action="" method="GET" class="flex flex-col md:flex-row gap-4">
