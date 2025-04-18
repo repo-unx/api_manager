@@ -100,3 +100,5 @@
     <div class="flex flex-1">
         <!-- Mobile sidebar backdrop -->
         <div id="sidebar-backdrop" class="fixed inset-0 bg-black bg-opacity-50 z-20 hidden md:hidden"></div>
+        <!-- Sidebar overlay for open state -->
+        <div id="sidebar-overlay" class="fixed inset-0 bg-black bg-opacity-30 z-10 hidden"></div>

@@ -113,7 +113,12 @@ $totalPages = ceil($totalRecords / ITEMS_PER_PAGE);
 $logs = getAllRecords(TABLE_LOGS, $page, ITEMS_PER_PAGE, $whereClause, $params, 'created_at DESC');
 
 // Get aggregators for dropdown
-$aggregators = getOptionsFromTable(TABLE_AGGREGATORS, 'id', 'name');
+$dbDriver = getenv('DB_DRIVER');
+if ($dbDriver == 'pgsql') {
+    $aggregators = getOptionsFromTable(TABLE_AGGREGATORS, 'id', 'name');
+} else {
+    $aggregators = getOptionsFromTable(TABLE_AGGREGATORS, 'id', 'name');
+}
 
 // Get endpoints for dropdown (filtered by aggregator if selected)
 $endpointWhere = $aggregatorId ? "aggregator_id = :aggregator_id" : null;

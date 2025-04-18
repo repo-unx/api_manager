@@ -110,8 +110,13 @@ $totalPages = ceil($totalRecords / ITEMS_PER_PAGE);
 // Get endpoints with pagination
 $endpoints = getAllRecords(TABLE_ENDPOINTS, $page, ITEMS_PER_PAGE, $whereClause, $params, 'name ASC');
 
-// Get all aggregators for dropdown
-$aggregators = getOptionsFromTable(TABLE_AGGREGATORS, 'id', 'name', 'status = ' . STATUS_ACTIVE);
+// Get all aggregators for dropdown - Use 'TRUE' for PostgreSQL
+$dbDriver = getenv('DB_DRIVER');
+if ($dbDriver == 'pgsql') {
+    $aggregators = getOptionsFromTable(TABLE_AGGREGATORS, 'id', 'name', 'status = TRUE');
+} else {
+    $aggregators = getOptionsFromTable(TABLE_AGGREGATORS, 'id', 'name', 'status = ' . STATUS_ACTIVE);
+}
 
 // Include header
 require_once __DIR__ . '/includes/head.php';
