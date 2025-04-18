@@ -54,7 +54,7 @@ if (isset($_GET['filter'])) {
                 break;
         }
         
-        $whereClause .= ' AND DATE(timestamp) BETWEEN :date_from AND :date_to';
+        $whereClause .= ' AND DATE(created_at) BETWEEN :date_from AND :date_to';
         $params[':date_from'] = $dateFrom;
         $params[':date_to'] = $dateTo;
         $filterActive = true;
@@ -76,14 +76,14 @@ if (isset($_GET['filter'])) {
     
     // Status code filtering
     if (isset($_GET['status_code']) && !empty($_GET['status_code'])) {
-        $whereClause .= ' AND status_code = :status_code';
+        $whereClause .= ' AND response_code = :status_code';
         $params[':status_code'] = $_GET['status_code'];
         $filterActive = true;
     }
 }
 
 // Get logs data for visualization
-$logs = getAllRecords(TABLE_LOGS, 1, 10000, $whereClause, $params, 'timestamp DESC');
+$logs = getAllRecords(TABLE_LOGS, 1, 10000, $whereClause, $params, 'created_at DESC');
 
 // Process data for charts
 // 1. Daily Request Counts
@@ -101,7 +101,7 @@ $statusCodes = [];
 // Process logs data
 foreach ($logs as $log) {
     // Format date for daily chart
-    $date = date('Y-m-d', strtotime($log['timestamp']));
+    $date = date('Y-m-d', strtotime($log['created_at']));
     if (!isset($dailyRequestsData[$date])) {
         $dailyRequestsData[$date] = 0;
     }
@@ -113,7 +113,7 @@ foreach ($logs as $log) {
     }
     
     // Count success/error requests
-    if ($log['status_code'] >= 200 && $log['status_code'] < 400) {
+    if ($log['response_code'] >= 200 && $log['response_code'] < 400) {
         $successCount++;
     } else {
         $errorCount++;
@@ -144,7 +144,7 @@ foreach ($logs as $log) {
     $aggregatorUsage[$aggregatorId]++;
     
     // Count status codes
-    $statusCode = $log['status_code'];
+    $statusCode = $log['response_code'];
     if (!isset($statusCodes[$statusCode])) {
         $statusCodes[$statusCode] = 0;
     }
